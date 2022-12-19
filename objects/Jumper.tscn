@@ -27,6 +27,7 @@ polygon = PoolVector2Array( -21, -21, 21, 0, -21, 21 )
 [node name="Trail" type="Node" parent="."]
 
 [node name="Points" type="Line2D" parent="Trail"]
+z_index = -1
 gradient = SubResource( 2 )
 
 [connection signal="area_entered" from="." to="." method="_on_Jumper_area_entered"]

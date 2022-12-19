@@ -16,3 +16,12 @@ func init(_position, _radius=radius):
 
 func _process(delta):
 	$Pivot.rotation += rotation_speed * delta
+
+func capture():
+	$AnimationPlayer.play("capture")
+
+func implode():
+	if !$AnimationPlayer.is_playing():
+		$AnimationPlayer.play("implode")
+	yield($AnimationPlayer, "animation_finished")
+	queue_free()
