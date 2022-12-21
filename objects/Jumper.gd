@@ -20,7 +20,6 @@ func _on_Jumper_area_entered(area):
 	target = area
 	velocity = Vector2()
 	emit_signal("captured", area)
-	target.get_node("Pivot").rotation = (position - target.position).angle()
 
 func _physics_process(delta):
 	if target:
@@ -30,3 +29,11 @@ func _physics_process(delta):
 	if trail.points.size() > trail_length:
 		trail.remove_point(0)
 	trail.add_point(position)
+
+func die():
+	target = null
+	queue_free()
+
+func _on_VisibilityNotifier2D_screen_exited():
+	if !target:
+		die()
