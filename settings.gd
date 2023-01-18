@@ -17,11 +17,11 @@ var color_schemes = {
 	},
 	"NEON2": {
 		'background': Color8(0, 0, 0),
-		'player_body': Color8(246, 255, 0),
-		'player_trail': Color8(255, 255, 255),
-		'circle_fill': Color8(255, 0, 110),
-		'circle_static': Color8(151, 255, 48),
-		'circle_limited': Color8(127, 0, 255)
+		'player_body': Color8(239, 48, 84),
+		'player_trail': Color8(255, 111, 89),
+		'circle_fill': Color8(64, 119, 113),
+		'circle_static': Color8(67, 170, 139),
+		'circle_limited': Color8(255, 255, 168)
 	},
 	"NEON3": {
 		'background': Color8(0, 0, 0),
@@ -33,4 +33,4 @@ var color_schemes = {
 	}
 }
 
-var theme = color_schemes["NEON3"]
+var theme = color_schemes["NEON2"]
