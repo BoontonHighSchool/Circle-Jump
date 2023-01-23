@@ -10,10 +10,8 @@ var level = 0
 func _ready():
 	randomize()
 	$HUD.hide()
-
+	
 func new_game():
-	if Settings.enable_music:
-		$Music.play()
 	self.score = 0
 	level = 1
 	$HUD.update_score(score)
@@ -26,16 +24,18 @@ func new_game():
 	spawn_circle($StartPosition.position)
 	$HUD.show()
 	$HUD.show_message("Go!")
-
-func spawn_circle(_position = null):
+	if Settings.enable_music:
+		$Music.play()
+	
+func spawn_circle(_position=null):
 	var c = Circle.instance()
 	if !_position:
 		var x = rand_range(-150, 150)
-		var y = rand_range(-500, -400)
+		var y = rand_range(-550, -450)
 		_position = player.target.position + Vector2(x, y)
 	add_child(c)
-	c.init(_position)
-
+	c.init(_position, level)
+	
 func _on_Jumper_captured(object):
 	$Camera2D.position = object.position
 	object.capture(player)
@@ -48,10 +48,11 @@ func set_score(value):
 	if score > 0 and score % Settings.circles_per_level == 0:
 		level += 1
 		$HUD.show_message("Level %s" % str(level))
-
+	
 func _on_Jumper_died():
+	get_tree().call_group("circles", "implode")
+	$Screens.game_over()
+	$HUD.hide()
 	if Settings.enable_music:
 		$Music.stop()
-	get_tree().call_group("circles", "implode")
-	$HUD.hide()
-	$Screens.game_over()
+	

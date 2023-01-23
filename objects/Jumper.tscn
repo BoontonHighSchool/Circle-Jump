@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/Jumper.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/jumper.png" type="Texture" id=2]
@@ -13,6 +13,9 @@ shader_param/color = null
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 3 )
 shader_param/color = Color( 0.0784314, 0.670588, 0.027451, 1 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1 )
 
 [node name="Jumper" type="Area2D"]
 material = SubResource( 4 )
@@ -32,6 +35,7 @@ texture = ExtResource( 2 )
 
 [node name="Points" type="Line2D" parent="Trail"]
 z_index = -1
+gradient = SubResource( 5 )
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
